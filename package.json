@@ -1,6 +1,6 @@
 {
   "name": "market-research-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server and Claude Code plugin unifying macro, equity, commodities, crypto, and industry-expertise market research.",
   "type": "module",
   "main": "server/index.js",

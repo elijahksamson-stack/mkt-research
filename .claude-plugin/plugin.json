@@ -1,7 +1,7 @@
 {
   "name": "market-research",
   "displayName": "Market Research Suite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Unified plugin for cross-asset market research: macro regime (rates/credit/USD), equity sector/factor rotation + industry expertise, commodities forecasting, and crypto risk gauges, plus a synthesis skill for writing market outlook/opinion pieces.",
   "author": {
     "name": "Eli Samson"
