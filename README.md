@@ -1,4 +1,5 @@
 # Market Research Suite
+<img width="1672" height="941" alt="exec-1fb85d97-f0b0-4385-a415-ffa31043a41d" src="https://github.com/user-attachments/assets/7177b649-ba6e-4eb6-96b6-f038c7b0aeec" />
 
 A single Claude Code plugin unifying four cross-asset research toolkits —
 macro, equities, commodities, and crypto — plus a qualitative
