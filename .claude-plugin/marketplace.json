@@ -1,0 +1,32 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "market-research",
+  "version": "0.1.0",
+  "description": "Cross-asset market research: macro, equities, commodities, crypto, and industry expertise, unified into one plugin.",
+  "owner": {
+    "name": "Eli Samson"
+  },
+  "plugins": [
+    {
+      "name": "market-research",
+      "displayName": "Market Research Suite",
+      "source": "./",
+      "description": "Macro regime, equity sector/factor rotation + industry expertise, commodities forecasting, crypto risk gauges, and a market-outlook synthesis skill.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Eli Samson"
+      },
+      "category": "research",
+      "tags": [
+        "investment-research",
+        "macro-research",
+        "equity-research",
+        "commodities-research",
+        "crypto-research",
+        "industry-research",
+        "market-outlook",
+        "mcp"
+      ]
+    }
+  ]
+}

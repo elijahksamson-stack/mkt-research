@@ -1,0 +1,139 @@
+Commodities ranking — horizon 1M (21 trading days), 25 commodities
+
+Rank Commodity              Family               P(Up)   ExpRet  RelStr  Trend         Curve    R:R   Conf  Score
+   1 wti_crude              energy              +68.7%    +1.9%      60     37 backwardation   1.17     94     82
+   2 rbob_gasoline          energy              +69.1%    +0.9%      88     37 backwardation   0.77     94     76
+   3 uranium                energy              +68.3%    +0.4%       8     35           n/a   0.93     94     72
+   4 gold                   precious_metals     +69.1%    +0.3%      24     33      contango   1.54     94     71
+   5 brent_crude            energy              +68.5%    +0.0%      64     39 backwardation   0.72     94     69
+   6 wheat                  agriculture         +65.7%    -0.9%      92     13      contango  11.61     94     60
+   7 heating_oil            energy              +67.0%    +0.0%      96     36 backwardation   1.03     69     60
+   8 corn                   agriculture         +65.7%    -1.7%      72     28      contango   1.83     94     52
+   9 live_cattle            livestock           +65.9%    -1.9%       4     65 backwardation   0.83     94     51
+  10 copper                 industrial_metals   +66.8%    -1.9%      36     68      contango   1.41     94     50
+  11 orange_juice           agriculture         +62.2%    -1.9%      40     35      contango   2.20     94     50
+  12 cotton                 agriculture         +65.6%    -2.3%      48     46      contango   0.65     94     46
+  13 coffee                 agriculture         +62.4%    -2.5%      44     25 backwardation   1.57     94     43
+  14 soybeans               agriculture         +64.8%    -2.6%      76     30 backwardation   1.36     94     42
+  15 oats                   agriculture         +62.1%    -2.6%      56     15      contango   1.06     94     42
+  16 platinum               precious_metals     +66.8%    -2.8%      20     34      contango   0.66     94     41
+  17 palladium              precious_metals     +65.4%    -2.8%      32     26      contango   0.53     94     41
+  18 cocoa                  agriculture         +64.8%    -2.7%      84     43      contango   1.45     69     37
+  19 aluminum               industrial_metals   +67.5%    -3.4%      52     71      contango   0.52     94     35
+  20 rough_rice             agriculture         +65.4%    -3.7%     100     40      contango   1.54     94     32
+  21 silver                 precious_metals     +66.0%    -3.8%      16     39      contango   1.20     94     31
+  22 feeder_cattle          livestock           +63.1%    -4.3%      12     45 backwardation   0.42     94     27
+  23 lean_hogs              livestock           +62.5%    -3.9%      80      7 backwardation   2.12     69     26
+  24 natural_gas            energy              +62.2%    -4.4%      28     68 backwardation   1.03     69     22
+  25 sugar                  agriculture         +61.6%    -4.8%      68     22      contango   1.18     69     20
+
+Pair-ratio trends:
+  wti_crude/brent_crude: ratio=0.9363, trend_signal=-0.49, opportunity=40.1
+  gold/silver: ratio=71.61, trend_signal=+0.17, opportunity=23.5
+  copper/gold: ratio=0.00155, trend_signal=+0.65, opportunity=63.3
+  corn/wheat: ratio=0.6514, trend_signal=-0.61, opportunity=34.1
+  heating_oil/wti_crude: ratio=0.04927, trend_signal=+0.75, opportunity=38.9
+  platinum/palladium: ratio=1.291, trend_signal=+0.13, opportunity=57.5
+
+Detail — top 5 by opportunity score:
+
+=== wti_crude (energy) — opportunity score 82.2/100 ===
+  forecast distribution:
+    1W   P(up)=+55.1%  E[return]=-8.0%  P10 downside=-5.1%
+    1M   P(up)=+68.7%  E[return]=+1.9%  P10 downside=-9.3%
+    3M   P(up)=+63.5%  E[return]=+0.5%  P10 downside=-15.0%
+  relative_return_rank (universe percentile, 1M expected return): 100
+  curve: backwardation — front/second annualized -10.33%, roll yield +10.33%/yr
+    front/third annualized -15.64%, curvature -0.0531
+    curve-shape change over ~21d: +0.51%/yr
+  relative performance (percentile, universe / family):
+    1W   universe=  96pct  family= 100pct  residual=+0.0508
+    1M   universe=  60pct  family=  50pct  residual=+0.0470
+    3M   universe=  32pct  family=  33pct  residual=+0.0147
+  risk/reward: entry 82.49, stop 75.92, target 90.18, R:R 1.17x (source=cluster), trend_violation=undercut, actionable=False
+  trend: signal=-0.02, opportunity=37.3, persistence=25%
+  CFTC positioning (as of 2026-07-14): managed-money net z=+1.03 (86pct), producer/merchant net z=+0.62 (75pct)
+  top direction-model contributions (standardized coefficients):
+    positive: trend_trend_signal (+1.12), mom_63d_vol_adj_return (+0.39), displacement_bollinger_z (+0.34), mom_21d_family_pct (+0.27)
+    negative: trend_21d_t_hac (-0.65), macro_usd_index_trend_signal (-0.51), mom_21d_residual (-0.44), curve_front_second_annualized (-0.42)
+  data as_of: 2026-07-17
+
+=== rbob_gasoline (energy) — opportunity score 75.7/100 ===
+  forecast distribution:
+    1W   P(up)=+57.0%  E[return]=-6.6%  P10 downside=-5.1%
+    1M   P(up)=+69.1%  E[return]=+0.9%  P10 downside=-9.3%
+    3M   P(up)=+55.6%  E[return]=-8.6%  P10 downside=-15.0%
+  relative_return_rank (universe percentile, 1M expected return): 96
+  curve: backwardation — front/second annualized -71.13%, roll yield +71.13%/yr
+    front/third annualized -88.73%, curvature -0.1760
+    curve-shape change over ~21d: -32.74%/yr
+  relative performance (percentile, universe / family):
+    1W   universe=  88pct  family=  67pct  residual=+0.0568
+    1M   universe=  88pct  family=  83pct  residual=+0.1241
+    3M   universe=  68pct  family=  83pct  residual=+0.1412
+  risk/reward: entry 3.393, stop 3.183, target 3.554, R:R 0.77x (source=fib_extension), trend_violation=intact, actionable=False
+  trend: signal=+0.30, opportunity=37.5, persistence=75%
+  CFTC positioning (as of 2026-07-14): managed-money net z=+0.84 (80pct), producer/merchant net z=-0.90 (17pct)
+  top direction-model contributions (standardized coefficients):
+    positive: trend_trend_signal (+1.12), mom_63d_vol_adj_return (+0.39), displacement_bollinger_z (+0.34), mom_21d_family_pct (+0.27)
+    negative: trend_21d_t_hac (-0.65), macro_usd_index_trend_signal (-0.51), mom_21d_residual (-0.44), curve_front_second_annualized (-0.42)
+  data as_of: 2026-07-17
+
+=== uranium (energy) — opportunity score 71.9/100 ===
+  forecast distribution:
+    1W   P(up)=+55.5%  E[return]=-7.5%  P10 downside=-5.1%
+    1M   P(up)=+68.3%  E[return]=+0.4%  P10 downside=-9.3%
+    3M   P(up)=+63.5%  E[return]=+0.6%  P10 downside=-15.0%
+  relative_return_rank (universe percentile, 1M expected return): 92
+  curve/carry: unavailable (no listed futures, or dated-contract data not currently served)
+  relative performance (percentile, universe / family):
+    1W   universe=   8pct  family=  17pct  residual=-0.1009
+    1M   universe=   8pct  family=  17pct  residual=-0.2260
+    3M   universe=   4pct  family=  17pct  residual=-0.2947
+  risk/reward: entry 38.73, stop 35.63, target 41.63, R:R 0.93x (source=cluster), trend_violation=undercut, actionable=False
+  trend: signal=-0.59, opportunity=35.5, persistence=75%
+  top direction-model contributions (standardized coefficients):
+    positive: trend_trend_signal (+1.12), mom_63d_vol_adj_return (+0.39), displacement_bollinger_z (+0.34), mom_21d_family_pct (+0.27)
+    negative: trend_21d_t_hac (-0.65), macro_usd_index_trend_signal (-0.51), mom_21d_residual (-0.44), curve_front_second_annualized (-0.42)
+  data as_of: 2026-07-17
+
+=== gold (precious_metals) — opportunity score 71.1/100 ===
+  forecast distribution:
+    1W   P(up)=+56.0%  E[return]=-7.4%  P10 downside=-5.1%
+    1M   P(up)=+69.1%  E[return]=+0.3%  P10 downside=-9.3%
+    3M   P(up)=+59.2%  E[return]=-3.0%  P10 downside=-15.0%
+  relative_return_rank (universe percentile, 1M expected return): 88
+  curve: contango — front/second annualized +4.06%, roll yield -4.06%/yr
+    front/third annualized +4.26%, curvature +0.0019
+    curve-shape change over ~21d: -0.11%/yr
+  relative performance (percentile, universe / family):
+    1W   universe=  24pct  family=  50pct  residual=-0.0081
+    1M   universe=  24pct  family=  75pct  residual=-0.0124
+    3M   universe=   8pct  family=  25pct  residual=-0.0482
+  risk/reward: entry 4013, stop 3946, target 4116, R:R 1.54x (source=cluster), trend_violation=undercut, actionable=True
+  trend: signal=-0.44, opportunity=32.5, persistence=75%
+  CFTC positioning (as of 2026-07-14): managed-money net z=-0.10 (45pct), producer/merchant net z=+1.48 (93pct)
+  top direction-model contributions (standardized coefficients):
+    positive: trend_trend_signal (+1.12), mom_63d_vol_adj_return (+0.39), displacement_bollinger_z (+0.34), mom_21d_family_pct (+0.27)
+    negative: trend_21d_t_hac (-0.65), macro_usd_index_trend_signal (-0.51), mom_21d_residual (-0.44), curve_front_second_annualized (-0.42)
+  data as_of: 2026-07-17
+
+=== brent_crude (energy) — opportunity score 69.1/100 ===
+  forecast distribution:
+    1W   P(up)=+55.2%  E[return]=-7.8%  P10 downside=-5.1%
+    1M   P(up)=+68.5%  E[return]=+0.0%  P10 downside=-9.3%
+    3M   P(up)=+56.8%  E[return]=-9.7%  P10 downside=-15.0%
+  relative_return_rank (universe percentile, 1M expected return): 84
+  curve: backwardation — front/second annualized -24.25%, roll yield +24.25%/yr
+    curve-shape change over ~21d: -16.01%/yr
+  relative performance (percentile, universe / family):
+    1W   universe=  92pct  family=  83pct  residual=+0.0570
+    1M   universe=  64pct  family=  67pct  residual=+0.0598
+    3M   universe=  40pct  family=  50pct  residual=-0.0277
+  risk/reward: entry 88.1, stop 81.05, target 93.16, R:R 0.72x (source=cluster), trend_violation=intact, actionable=False
+  trend: signal=+0.08, opportunity=39.1, persistence=75%
+  CFTC positioning (as of 2026-07-14): managed-money net z=+0.52 (69pct), producer/merchant net z=-1.93 (4pct)
+  top direction-model contributions (standardized coefficients):
+    positive: trend_trend_signal (+1.12), mom_63d_vol_adj_return (+0.39), displacement_bollinger_z (+0.34), mom_21d_family_pct (+0.27)
+    negative: trend_21d_t_hac (-0.65), macro_usd_index_trend_signal (-0.51), mom_21d_residual (-0.44), curve_front_second_annualized (-0.42)
+  data as_of: 2026-07-17

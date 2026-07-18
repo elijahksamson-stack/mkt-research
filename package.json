@@ -1,0 +1,37 @@
+{
+  "name": "market-research-plugin",
+  "version": "0.1.0",
+  "description": "MCP server and Claude Code plugin unifying macro, equity, commodities, crypto, and industry-expertise market research.",
+  "type": "module",
+  "main": "server/index.js",
+  "bin": {
+    "market-research-mcp": "server/index.js"
+  },
+  "files": [
+    ".claude-plugin/",
+    ".mcp.json",
+    "skills/",
+    "server/",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test server/index.test.js",
+    "validate:plugin": "claude plugin validate .",
+    "check": "npm run test && npm run validate:plugin"
+  },
+  "keywords": [
+    "mcp",
+    "claude-code",
+    "investment-research",
+    "macro-research",
+    "equity-research",
+    "commodities-research",
+    "crypto-research",
+    "industry-research"
+  ],
+  "author": "Eli Samson",
+  "engines": {
+    "node": ">=18"
+  }
+}
