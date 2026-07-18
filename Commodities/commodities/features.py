@@ -214,6 +214,36 @@ def build_live_bundles(data: UniverseData) -> tuple[dict[str, FeatureBundle], li
     return bundles, pairs
 
 
+def build_feature_matrix(
+    data: UniverseData, label_panel: Optional[pd.DataFrame] = None, include_curve: bool = False
+) -> pd.DataFrame:
+    """One row per (canonical_id, as_of) of horizon-INDEPENDENT features.
+
+    Features never depend on the forecast horizon -- only labels do -- so
+    this is computed exactly once and reused across every horizon (see
+    build_training_matrix / ranking.build_rankings). Groups by as_of so each
+    date's universe-wide momentum table + macro snapshot is built once and
+    reused across that date's commodities.
+
+    `include_curve` defaults False for the same reason build_training_matrix
+    does: historical dated-contract curve fetches are almost always empty and
+    each miss is a real network round-trip.
+    """
+    label_panel = label_panel if label_panel is not None else build_label_panel(data.commodity_series)
+    if label_panel.empty:
+        return pd.DataFrame()
+
+    rows: list[dict] = []
+    for as_of in sorted(label_panel["as_of"].unique()):
+        as_of_ts = pd.Timestamp(as_of)
+        bundles = _bundles_for_as_of(data, as_of=as_of_ts, include_curve=include_curve)
+        for cid, bundle in bundles.items():
+            feature_row = flatten_feature_row(bundle)
+            feature_row.update(canonical_id=cid, family=data.universe[cid].family, as_of=as_of_ts)
+            rows.append(feature_row)
+    return pd.DataFrame(rows)
+
+
 NUMERIC_FIELD_PATHS: tuple[str, ...] = (
     "trend.trend_signal", "trend.opportunity", "trend.persistence",
     "trend.mean_reversion_z", "trend.mean_reversion_percentile",
