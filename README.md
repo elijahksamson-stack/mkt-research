@@ -48,7 +48,7 @@ its user-facing label is controlled by `displayName` in
 From the published repository:
 
 ```text
-/plugin marketplace add elijahksamson-stack/industry-expert-plugin
+/plugin marketplace add elijahksamson-stack/mkt-research
 /plugin install market-research@market-research
 /reload-plugins
 ```
@@ -119,11 +119,10 @@ For the Python toolkits, `cd` into each directory and run `uv run pytest -q`.
 
 ## Publishing
 
-Published at `elijahksamson-stack/industry-expert-plugin` (the repository
-name predates the unification into this multi-asset-class plugin, kept for
-URL continuity). The plugin version appears in `package.json`,
-`.claude-plugin/plugin.json`, and `.claude-plugin/marketplace.json`; bump
-all three when publishing a release.
+Published at `elijahksamson-stack/mkt-research`. The plugin version
+appears in `package.json`, `.claude-plugin/plugin.json`, and
+`.claude-plugin/marketplace.json`; bump all three when publishing a
+release.
 
 See `CLAUDE.md` for the full methodology behind each research set, how
 they share (or intentionally duplicate) underlying math, and the data
