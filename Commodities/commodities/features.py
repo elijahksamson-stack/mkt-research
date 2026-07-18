@@ -317,11 +317,11 @@ def flatten_feature_row(bundle: FeatureBundle) -> dict[str, float]:
 def build_training_matrix(
     data: UniverseData, label_panel: Optional[pd.DataFrame] = None, include_curve: bool = False
 ) -> pd.DataFrame:
-    """One row per (canonical_id, as_of, horizon_days): flattened features
-    joined to the forward_return/forward_direction label. Groups by as_of
-    so each date's universe-wide momentum table/macro snapshot is computed
-    once and reused across that date's commodities (see module docstring
-    on why per-date, not per-row, is the right granularity).
+    """One row per (canonical_id, as_of, horizon_days): the horizon-independent
+    feature matrix (build_feature_matrix, computed once) inner-joined to each
+    forward_return/forward_direction label. Splitting features from labels this
+    way is what lets ranking.build_rankings compute features a single time
+    instead of once per horizon.
 
     `include_curve` defaults False: historical curve/carry fetches are, in
     practice, almost always empty (see market_data.fetch_dated_contract_close's
@@ -334,18 +334,10 @@ def build_training_matrix(
     if label_panel.empty:
         return label_panel
 
-    rows: list[dict] = []
-    for as_of, group in label_panel.groupby("as_of"):
-        bundles = _bundles_for_as_of(data, as_of=as_of, include_curve=include_curve)
-        for _, label_row in group.iterrows():
-            bundle = bundles.get(label_row["canonical_id"])
-            if bundle is None:
-                continue
-            feature_row = flatten_feature_row(bundle)
-            feature_row.update(
-                canonical_id=label_row["canonical_id"], family=data.universe[label_row["canonical_id"]].family,
-                as_of=as_of, horizon_days=label_row["horizon_days"],
-                forward_return=label_row["forward_return"], forward_direction=label_row["forward_direction"],
-            )
-            rows.append(feature_row)
-    return pd.DataFrame(rows)
+    features = build_feature_matrix(data, label_panel, include_curve=include_curve)
+    if features.empty:
+        return features
+
+    labels = label_panel[["canonical_id", "as_of", "horizon_days", "forward_return", "forward_direction"]].copy()
+    labels["as_of"] = pd.to_datetime(labels["as_of"])
+    return features.merge(labels, on=["canonical_id", "as_of"], how="inner")
