@@ -15,8 +15,8 @@ rather than each living behind its own interface:
   I'm seeing."
 
 - **`equity-rotation/`** (quantitative) -- still lives here as a plain
-  Python `uv`-managed project; the unified plugin's `skills/equity-research/`
-  invokes it via `uv run python -m equity_rotation.report` rather than
+  Python `uv`-managed project; the unified plugin's `market-outlook` skill
+  drives it via `uv run python -m equity_rotation.report` rather than
   wrapping it in its own MCP server. Ranks the 11 GICS sector ETFs and 6
   style-factor ETFs by peer/benchmark-blended leadership + opportunity,
   plus an RRG-style relative-technicals table (data only, no charts).
@@ -39,6 +39,6 @@ than each getting a bespoke MCP server -- this matches Claude Code's own
 guidance to prefer skills over MCP for local CLI actions, and meant
 `equity-rotation` didn't need its interface "finalized" first the way an
 MCP server would have required. Use them together as before: pull the
-quant read from `equity-research` to see *which* sectors/factors are
-moving, then pull qualitative context from `industry-research` to
+quant read from the `equity-rotation` engine to see *which* sectors/factors
+are moving, then pull qualitative context from `industry-research` to
 understand *why*.

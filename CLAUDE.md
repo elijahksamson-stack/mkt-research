@@ -14,8 +14,8 @@ not a rewrite.
 Blog/
 ├── .claude-plugin/         plugin.json, marketplace.json
 ├── server/                 industry-expertise MCP server (Node, stdio)
-├── skills/                 macro-research, equity-research, industry-research,
-│                           commodities-research, crypto-research, market-outlook
+├── skills/                 industry-research, market-outlook (market-outlook
+│                           drives all four quant engines directly)
 ├── Macro/
 │   ├── Rates/               FRED + yfinance: HY credit, rates, USD vs S&P
 │   └── market-structure/    equity index/sector risk:reward + trend engine (source of truth)
@@ -84,7 +84,7 @@ ported copy and fix it there too.
 - **`Equities/equity-rotation`** (quant) — ranks the 11 GICS sector ETFs and
   6 style-factor ETFs by peer/benchmark-blended leadership + opportunity,
   plus an RRG-style (leading/weakening/lagging/improving) quadrant read.
-  Invoked by the plugin's `equity-research` skill; can also be run directly:
+  Driven by the `market-outlook` skill; can also be run directly:
   ```bash
   cd Equities/equity-rotation && uv run python -m equity_rotation.report
   ```
@@ -94,7 +94,7 @@ ported copy and fix it there too.
   standalone plugin (`Equities/sector-lvl-expertise/`); now part of this
   plugin, no separate install.
 
-Use them together: `equity-research` says *what* is leading;
+Use them together: the equity-rotation engine says *what* is leading;
 `industry-research` says *why* (industry structure, economics, competitive
 dynamics) once you know what to ask about.
 

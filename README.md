@@ -1,9 +1,11 @@
 # Market Research Suite
 
-A single Claude Code plugin unifying four cross-asset research toolkits —
-macro, equities, commodities, and crypto — plus a qualitative
-industry-expertise knowledge base and a synthesis skill for writing market
-outlook/opinion pieces. The repository root is the plugin root.
+A single Claude Code plugin that exposes two skills over four cross-asset
+research engines (macro, equities, commodities, crypto) plus a qualitative
+industry-expertise knowledge base: `market-outlook`, which compiles every
+engine into one market outlook/opinion piece, and `industry-research`, which
+grounds analysis in an industry's structure and economics via the MCP
+server. The repository root is the plugin root.
 
 This plugin replaces what used to be a separate, standalone
 `industry-expertise` plugin (formerly `Equities/sector-lvl-expertise/`,
@@ -22,17 +24,13 @@ research area.
 ├── .mcp.json
 ├── server/                        industry-expertise MCP server (Node, stdio)
 ├── skills/
-│   ├── macro-research/            Macro/Rates + Macro/market-structure
-│   ├── equity-research/           Equities/equity-rotation
 │   ├── industry-research/         39 sector/industry reference modules (MCP-backed)
-│   ├── commodities-research/      Commodities
-│   ├── crypto-research/           Crypto
-│   └── market-outlook/            synthesizes all of the above into one piece
-├── Macro/Rates/                   Python toolkit (uv), invoked via macro-research
-├── Macro/market-structure/        Python toolkit (uv), invoked via macro-research
-├── Equities/equity-rotation/      Python toolkit (uv), invoked via equity-research
-├── Commodities/                   Python toolkit (uv), invoked via commodities-research
-├── Crypto/                        Python toolkit (uv), invoked via crypto-research
+│   └── market-outlook/            compiles every engine into one outlook/opinion piece
+├── Macro/Rates/                   Python engine (uv), driven by market-outlook
+├── Macro/market-structure/        Python engine (uv), driven by market-outlook
+├── Equities/equity-rotation/      Python engine (uv), driven by market-outlook
+├── Commodities/                   Python engine (uv), driven by market-outlook
+├── Crypto/                        Python engine (uv), driven by market-outlook
 ├── package.json
 ├── README.md                      this file (plugin-facing: install, components)
 └── CLAUDE.md                      dev-facing: full methodology, shared DNA, limitations
@@ -68,22 +66,18 @@ Use `/mcp` to confirm `industry-expertise` is connected.
 Ask Claude naturally — each skill's `description` is written to trigger on
 the kind of question it answers:
 
-- "What's the macro regime right now — risk-on or risk-off?" → `macro-research`
-- "Which sectors are leading right now?" → `equity-research`
-- "What drives margins in the semiconductor equipment industry?" → `industry-research`
-- "Give me a commodities outlook for the next month." → `commodities-research`
-- "How's crypto's risk appetite looking?" → `crypto-research`
-- "Write me a market outlook piece." → `market-outlook` (orchestrates all five)
+- "Write me a market outlook piece." / "What's happening in markets right
+  now?" / "Risk-on or risk-off, and what's leading?" → `market-outlook`
+  (compiles all four engines + industry grounding + primary-source
+  enrichment into one piece)
+- "What drives margins in the semiconductor equipment industry?" →
+  `industry-research`
 
-Or invoke any skill directly:
+Or invoke either skill directly:
 
 ```text
-/market-research:macro-research
-/market-research:equity-research
-/market-research:industry-research "Analyze the industry context for a regional bank"
-/market-research:commodities-research 3M
-/market-research:crypto-research
 /market-research:market-outlook "focus on rate-sensitive sectors"
+/market-research:industry-research "Analyze the industry context for a regional bank"
 ```
 
 The MCP server (`industry-expertise`) exposes:
@@ -94,10 +88,12 @@ The MCP server (`industry-expertise`) exposes:
 - `industry-expertise://<sector>/<industry>` resources.
 - `investigate-industry` prompt.
 
-The four quant skills don't go through MCP — they shell out directly to
-each toolkit's `uv run python -m <package>.report`, whose output is
-deliberately self-explanatory (formula legend + per-line-item breakdown),
-so Claude reads the numbers rather than reinterpreting them.
+The four quant engines don't go through MCP — `market-outlook` shells out
+directly to each toolkit's `uv run python -m <package>.report`, whose output
+is deliberately self-explanatory (formula legend + per-line-item breakdown),
+so Claude reads the numbers rather than reinterpreting them. They are no
+longer exposed as standalone skills; `market-outlook` is the entry point
+that drives them.
 
 ## Prerequisites
 
