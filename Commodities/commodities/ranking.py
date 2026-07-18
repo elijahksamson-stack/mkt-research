@@ -36,7 +36,10 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-from commodities.features import FeatureBundle, UniverseData, build_live_bundles, build_training_matrix, flatten_feature_row
+from commodities.features import (
+    FeatureBundle, UniverseData, build_feature_matrix, build_live_bundles,
+    build_training_matrix, flatten_feature_row,
+)
 from commodities.labels import build_label_panel
 from commodities.models import HorizonModelSet, fit_horizon_models, predict_direction_probability, predict_magnitude, predict_quantiles
 from commodities.momentum import PairTrend
@@ -177,8 +180,19 @@ def build_rankings(data: UniverseData, horizons: tuple[int, ...] = SPEC_HORIZONS
     model_sets: dict[int, HorizonModelSet] = {}
     weights_by_horizon: dict[int, ComponentWeights] = {}
     cal_err_by_horizon: dict[int, float] = {}
+
+    # Features are horizon-independent: compute the matrix ONCE, then merge each
+    # horizon's labels onto it. This replaces calling build_training_matrix per
+    # horizon (which re-ran the whole feature replay 3x). Byte-identical per-horizon
+    # panels, ~3x less feature compute.
+    feature_matrix = build_feature_matrix(data, label_panel)
+    label_cols = ["canonical_id", "as_of", "horizon_days", "forward_return", "forward_direction"]
     for h in horizons:
-        panel_h = build_training_matrix(data, label_panel[label_panel["horizon_days"] == h])
+        labels_h = label_panel[label_panel["horizon_days"] == h][label_cols].copy()
+        if feature_matrix.empty or labels_h.empty:
+            continue
+        labels_h["as_of"] = pd.to_datetime(labels_h["as_of"])
+        panel_h = feature_matrix.merge(labels_h, on=["canonical_id", "as_of"], how="inner")
         if panel_h.empty:
             continue
         weights, cal_err = derive_component_weights(panel_h, h)
